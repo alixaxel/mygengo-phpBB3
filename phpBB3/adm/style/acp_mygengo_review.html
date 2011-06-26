@@ -1,0 +1,67 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>Job Review</h1><hr />
+
+<!-- INCLUDE acp_mygengo_notify.html -->
+
+<table cellspacing="1">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Slug</th>
+			<th>Source</th>
+			<th>Target</th>
+			<th>Tier</th>
+			<th>Units</th>
+			<th>Credits</th>
+			<th>Date</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<!-- IF ENVIRONMENT == '0' -->
+					<a href="http://sandbox.mygengo.com/s_details/{JOB_ID}" rel="external">{JOB_ID}</a>
+				<!-- ELSE -->
+					<a href="http://mygengo.com/translate/job/details/{JOB_ID}" rel="external">{JOB_ID}</a>
+				<!-- ENDIF -->
+			</td>
+			<td>{SLUG}</td>
+			<td>{LC_SRC}</td>
+			<td>{LC_TGT}</td>
+			<td>{TIER}</td>
+			<td>{UNIT_COUNT}</td>
+			<td>{CREDITS}</td>
+			<td>{CTIME}</td>
+			<td>{STATUS}</td>
+		</tr>
+	</tbody>
+</table>
+
+<fieldset>
+	<legend>Text</legend>
+	<div align="center">
+		<textarea readonly="readonly" rows="10" style="width: 98%;">{BODY_SRC}</textarea>
+	</div>
+</fieldset>
+
+<!-- IF BODY_TGT != '' -->
+	<fieldset>
+		<legend>Text (Translated)</legend>
+		<div align="center">
+			<textarea readonly="readonly" rows="10" style="width: 98%;">{BODY_TGT}</textarea>
+		</div>
+		<!-- IF STATUS != 'Approved' -->
+			<div class="errorbox notice">
+				<p>Warning: This is a machine pre-translation.</p>
+			</div>
+		<!-- ENDIF -->
+	</fieldset>
+<!-- ENDIF -->
+
+<!-- INCLUDE acp_mygengo_feedback.html -->
+<!-- INCLUDE acp_mygengo_comments.html -->
+<!-- INCLUDE acp_mygengo_revisions.html -->
+
+<!-- INCLUDE overall_footer.html -->

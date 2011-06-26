@@ -1,0 +1,135 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>Order Job</h1><hr />
+
+<!-- INCLUDE acp_mygengo_notify.html -->
+
+<form accept-charset="UTF-8" action="index.php{SID}&i=mygengo&mode=order" method="post">
+	<fieldset>
+		<dl>
+			<dt><label for="job[slug]">Slug:</label></dt>
+			<dd><input id="job[slug]" name="job[slug]" size="32" type="text" value="{SLUG}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="job[body_src]">Text:</label></dt>
+			<dd><textarea id="job[body_src]" name="job[body_src]" rows="15" style="width: 98%;">{BODY_SRC}</textarea></dd>
+		</dl>
+		<dl>
+			<dt><label>Tier:</label></dt>
+			<dd>
+				<!-- IF TIER == 'machine' -->
+					<input checked="checked" id="job[tier][machine]" name="job[tier]" type="radio" value="machine" /> <label for="job[tier][machine]">Machine</label>
+					<input id="job[tier][standard]" name="job[tier]" type="radio" value="standard" /> <label for="job[tier][standard]">Standard</label>
+					<input id="job[tier][pro]" name="job[tier]" type="radio" value="pro" /> <label for="job[tier][pro]">Pro</label>
+					<input id="job[tier][ultra]" name="job[tier]" type="radio" value="ultra" /> <label for="job[tier][ultra]">Ultra</label>
+				<!-- ELSEIF TIER == 'standard' -->
+					<input id="job[tier][machine]" name="job[tier]" type="radio" value="machine" /> <label for="job[tier][machine]">Machine</label>
+					<input checked="checked" id="job[tier][standard]" name="job[tier]" type="radio" value="standard" /> <label for="job[tier][standard]">Standard</label>
+					<input id="job[tier][pro]" name="job[tier]" type="radio" value="pro" /> <label for="job[tier][pro]">Pro</label>
+					<input id="job[tier][ultra]" name="job[tier]" type="radio" value="ultra" /> <label for="job[tier][ultra]">Ultra</label>
+				<!-- ELSEIF TIER == 'pro' -->
+					<input id="job[tier][machine]" name="job[tier]" type="radio" value="machine" /> <label for="job[tier][machine]">Machine</label>
+					<input id="job[tier][standard]" name="job[tier]" type="radio" value="standard" /> <label for="job[tier][standard]">Standard</label>
+					<input checked="checked" id="job[tier][pro]" name="job[tier]" type="radio" value="pro" /> <label for="job[tier][pro]">Pro</label>
+					<input id="job[tier][ultra]" name="job[tier]" type="radio" value="ultra" /> <label for="job[tier][ultra]">Ultra</label>
+				<!-- ELSEIF TIER == 'ultra' -->
+					<input id="job[tier][machine]" name="job[tier]" type="radio" value="machine" /> <label for="job[tier][machine]">Machine</label>
+					<input id="job[tier][standard]" name="job[tier]" type="radio" value="standard" /> <label for="job[tier][standard]">Standard</label>
+					<input id="job[tier][pro]" name="job[tier]" type="radio" value="pro" /> <label for="job[tier][pro]">Pro</label>
+					<input checked="checked" id="job[tier][ultra]" name="job[tier]" type="radio" value="ultra" /> <label for="job[tier][ultra]">Ultra</label>
+				<!-- ELSE -->
+					<input id="job[tier][machine]" name="job[tier]" type="radio" value="machine" /> <label for="job[tier][machine]">Machine</label>
+					<input checked="checked" id="job[tier][standard]" name="job[tier]" type="radio" value="standard" /> <label for="job[tier][standard]">Standard</label>
+					<input id="job[tier][pro]" name="job[tier]" type="radio" value="pro" /> <label for="job[tier][pro]">Pro</label>
+					<input id="job[tier][ultra]" name="job[tier]" type="radio" value="ultra" /> <label for="job[tier][ultra]">Ultra</label>
+				<!-- ENDIF -->
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="job[lc_src]">Source Language:</label></dt>
+			<dd>
+				<select id="job[lc_src]" name="job[lc_src]">
+					<option value=""></option>
+					<!-- BEGIN languages -->
+						<!-- IF LC_SRC == languages.LC -->
+							<option selected="selected" value="{languages.LC}">{languages.LANGUAGE}</option>
+						<!-- ELSE -->
+							<option value="{languages.LC}">{languages.LANGUAGE}</option>
+						<!-- ENDIF -->
+					<!-- END languages -->
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="job[lc_tgt]">Target Language:</label></dt>
+			<dd>
+				<select id="job[lc_tgt]" name="job[lc_tgt]">
+					<option value=""></option>
+					<!-- BEGIN languages -->
+						<!-- IF LC_TGT == languages.LC -->
+							<option selected="selected" value="{languages.LC}">{languages.LANGUAGE}</option>
+						<!-- ELSE -->
+							<option value="{languages.LC}">{languages.LANGUAGE}</option>
+						<!-- ENDIF -->
+					<!-- END languages -->
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="job[auto_approve]">Auto-Approve Job:</label></dt>
+			<dd>
+				<!-- IF AUTO_APPROVE == '1' -->
+					<input checked="checked" id="job[auto_approve]" name="job[auto_approve]" type="checkbox" value="1" />
+				<!-- ELSE -->
+					<input id="job[auto_approve]" name="job[auto_approve]" type="checkbox" value="1" />
+				<!-- ENDIF -->
+			</dd>
+		</dl>
+	</fieldset>
+	<fieldset>
+		<legend>Total</legend>
+		<!-- IF UNIT_COUNT != '' -->
+			<dl>
+				<dt><label>Units:</label></dt>
+				<dd><strong>{UNIT_COUNT}</strong></dd>
+			</dl>
+		<!-- ENDIF -->
+		<!-- IF CREDITS != '' -->
+			<dl>
+				<dt><label>Credits:</label></dt>
+				<dd><strong>{CREDITS}</strong></dd>
+			</dl>
+		<!-- ENDIF -->
+		<p class="submit-buttons">
+			<input class="button1" id="quote" name="quote" type="submit" value="Get a Quote" />
+		</p>
+	</fieldset>
+	<fieldset>
+		<legend>Comment for the Translator (Optional)</legend>
+		<div align="center">
+			<textarea id="job[comment]" name="job[comment]" rows="3" style="width: 98%;">{COMMENT}</textarea>
+		</div>
+		<p class="submit-buttons">
+			<input class="button1" id="submit" name="submit" type="submit" value="Order" />
+			<input class="button2" id="reset" name="reset" type="reset" value="Reset" />
+		</p>
+	</fieldset>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script>
+	$(function()
+	{
+		$('#job\\[lc_src\\]').change(function()
+		{
+			$('#job\\[lc_tgt\\]').attr('disabled', 'disabled');
+
+			$.get('index.php{SID}', {i: 'mygengo', mode: 'languages', lc_src: $('#job\\[lc_src\\]').val()}, function(data)
+			{
+				$('#job\\[lc_tgt\\]').html(data).removeAttr('disabled').focus();
+			});
+		});
+	});
+</script>
+
+<!-- INCLUDE overall_footer.html -->

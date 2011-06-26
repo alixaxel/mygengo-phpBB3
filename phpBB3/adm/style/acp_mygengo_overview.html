@@ -1,0 +1,70 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>Overview</h1><hr />
+
+<!-- INCLUDE acp_mygengo_notify.html -->
+
+<table cellspacing="1">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Slug</th>
+			<th>Source</th>
+			<th>Target</th>
+			<th>Tier</th>
+			<th>Units</th>
+			<th>Credits</th>
+			<th>Date</th>
+			<th>Status</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!-- BEGIN jobs -->
+			<!-- IF jobs.S_ROW_COUNT is even -->
+				<tr class="row1">
+			<!-- ELSE -->
+				<tr class="row2">
+			<!-- ENDIF -->
+				<td>
+					<!-- IF ENVIRONMENT == '0' -->
+						<a href="http://sandbox.mygengo.com/s_details/{jobs.JOB_ID}" rel="external">{jobs.JOB_ID}</a>
+					<!-- ELSE -->
+						<a href="http://mygengo.com/translate/job/details/{jobs.JOB_ID}" rel="external">{jobs.JOB_ID}</a>
+					<!-- ENDIF -->
+				</td>
+				<td>{jobs.SLUG}</td>
+				<td>{jobs.LC_SRC}</td>
+				<td>{jobs.LC_TGT}</td>
+				<td>{jobs.TIER}</td>
+				<td>{jobs.UNIT_COUNT}</td>
+				<td>{jobs.CREDITS}</td>
+				<td>{jobs.CTIME}</td>
+				<td>{jobs.STATUS}</td>
+				<td>
+					<form accept-charset="UTF-8" action="index.php{SID}&i=mygengo" method="post">
+						<input type="hidden" name="job_id" value="{jobs.JOB_ID}" />
+						<!-- IF jobs.STATUS == 'Reviewable' -->
+							<input class="button1" name="mode" style="text-transform: capitalize;" type="submit" value="review" />
+						<!-- ELSE -->
+							<input class="button2" name="mode" style="text-transform: capitalize;" type="submit" value="review" />
+						<!-- ENDIF -->						
+						<!-- IF jobs.STATUS == 'Available' -->
+							<input class="button2" name="mode" style="text-transform: capitalize;" type="submit" value="cancel" />
+						<!-- ENDIF -->
+					</form>
+				</td>
+			</tr>
+		<!-- BEGINELSE -->
+			<tr>
+				<td bgcolor="white" colspan="10">
+					<div class="errorbox notice">
+						<p>No jobs at this time, try ordering some first.</p>
+					</div>
+				</td>
+			</tr>
+		<!-- END jobs -->
+	</tbody>
+</table>
+
+<!-- INCLUDE overall_footer.html -->

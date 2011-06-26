@@ -1,0 +1,78 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>Reject Job</h1><hr />
+
+<!-- INCLUDE acp_mygengo_notify.html -->
+
+<form accept-charset="UTF-8" action="index.php{SID}&i=mygengo&mode=reject" method="post">
+	<input name="job_id" type="hidden" value="{JOB_ID}" />
+	<fieldset>
+		<dl>
+			<dt><label>Would you like to cancel the translation?</label></dt>
+			<dd>
+				<!-- IF FOLLOW_UP == 'cancel' -->
+					<input checked="checked" id="job[follow_up][cancel]" name="job[follow_up]" type="radio" value="cancel" />
+				<!-- ELSE -->
+					<input id="job[follow_up][cancel]" name="job[follow_up]" type="radio" value="cancel" />
+				<!-- ENDIF -->
+
+				<label for="job[follow_up][cancel]">Yes, please cancel and refund me</label><br />
+
+				<!-- IF FOLLOW_UP == 'requeue' -->
+					<input checked="checked" id="job[follow_up][requeue]" name="job[follow_up]" type="radio" value="requeue" />
+				<!-- ELSE -->
+					<input id="job[follow_up][requeue]" name="job[follow_up]" type="radio" value="requeue" />
+				<!-- ENDIF -->
+				
+				<label for="job[follow_up][requeue]">No, please have another translator finish the job</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label>Rejection reason:</label></dt>
+			<dd>
+				<!-- IF REASON == 'quality' -->
+					<input checked="checked" id="job[reason][quality]" name="job[reason]" type="radio" value="quality" />
+				<!-- ELSE -->
+					<input id="job[reason][quality]" name="job[reason]" type="radio" value="quality" />
+				<!-- ENDIF -->
+
+				<label for="job[reason][quality]">Poor quality of translation</label><br />
+				
+				<!-- IF REASON == 'incomplete' -->
+					<input checked="checked" id="job[reason][incomplete]" name="job[reason]" type="radio" value="incomplete" />
+				<!-- ELSE -->
+					<input id="job[reason][incomplete]" name="job[reason]" type="radio" value="incomplete" />
+				<!-- ENDIF -->
+
+				<label for="job[reason][incomplete]">Missing or incomplete translation</label><br />
+				
+				<!-- IF REASON == 'other' -->
+					<input checked="checked" id="job[reason][other]" name="job[reason]" type="radio" value="other" />
+				<!-- ELSE -->
+					<input id="job[reason][other]" name="job[reason]" type="radio" value="other" />
+				<!-- ENDIF -->
+
+				<label for="job[reason][other]">Other (please describe below)</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="job[comment]">Comment:</label></dt>
+			<dd><textarea id="job[comment]" name="job[comment]" rows="2" style="width: 98%;">{COMMENT}</textarea></dd>
+		</dl>
+		<dl>
+			<dt><label for="job[captcha]">CAPTCHA:</label></dt>
+			<dd>
+				<!-- IF CAPTCHA_URL != '' -->
+					<img src="{CAPTCHA_URL}" /><br />
+				<!-- ENDIF -->
+				<input id="job[captcha]" name="job[captcha]" type="text" value="{CAPTCHA}" />
+			</dd>
+		</dl>
+		<p class="submit-buttons">
+			<input class="button1" id="submit" name="submit" type="submit" value="Reject" />
+			<input class="button2" id="reset" name="reset" type="reset" value="Reset" />
+		</p>
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

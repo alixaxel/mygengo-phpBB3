@@ -1,0 +1,82 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>Account</h1><hr />
+
+<!-- INCLUDE acp_mygengo_notify.html -->
+
+<form accept-charset="UTF-8" action="index.php{SID}&i=mygengo&mode=account" method="post">
+	<fieldset>
+		<legend>Settings</legend>
+		<dl>
+			<dt><label for="mygengo_public_key">API Public Key:</label></dt>
+			<dd><input id="mygengo_public_key" name="mygengo_public_key" size="75" type="text" value="{PUBLIC_KEY}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="mygengo_private_key">API Private Key:</label></dt>
+			<dd><input id="mygengo_private_key" name="mygengo_private_key" size="75" type="text" value="{PRIVATE_KEY}" /></dd>
+		</dl>
+		<dl style="display: none;">
+			<dt><label>API Environment:</label></dt>
+			<dd>
+				<!-- IF ENVIRONMENT == '0' -->
+					<input checked="checked" id="mygengo_environment[sandbox]" name="mygengo_environment" type="radio" value="0" />
+				<!-- ELSE -->
+					<input id="mygengo_environment[sandbox]" name="mygengo_environment" type="radio" value="0" />
+				<!-- ENDIF -->
+
+				<label for="mygengo_environment[sandbox]">Sandbox</label>
+
+				<!-- IF ENVIRONMENT == '1' -->
+					<input checked="checked" id="mygengo_environment[production]" name="mygengo_environment" type="radio" value="1" />
+				<!-- ELSE -->
+					<input id="mygengo_environment[production]" name="mygengo_environment" type="radio" value="1" />
+				<!-- ENDIF -->
+
+				<label for="mygengo_environment[production]">Production</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="mygengo_auto_approve">Auto-Approve Jobs:</label></dt>
+			<dd>
+				<!-- IF AUTO_APPROVE == '1' -->
+					<input checked="checked" id="mygengo_auto_approve" name="mygengo_auto_approve" type="checkbox" value="1" />
+				<!-- ELSE -->
+					<input id="mygengo_auto_approve" name="mygengo_auto_approve" type="checkbox" value="1" />
+				<!-- ENDIF -->
+			</dd>
+		</dl>
+	</fieldset>
+
+<!-- IF USER_SINCE != '' || CREDITS_SPENT != '' || CREDITS != '' -->
+	<fieldset>
+		<legend>Information</legend>
+		<!-- IF USER_SINCE != '' -->
+			<dl>
+				<dt><label>User Since:</label></dt>
+				<dd><strong>{USER_SINCE}</strong></dd>
+			</dl>
+		<!-- ENDIF -->
+		<!-- IF CREDITS_SPENT != '' -->
+			<dl>
+				<dt><label>Credits Spent:</label></dt>
+				<dd><strong>{CREDITS_SPENT}</strong></dd>
+			</dl>
+		<!-- ENDIF -->
+		<!-- IF CREDITS != '' -->
+			<dl>
+				<dt><label>Credits Available:</label></dt>
+				<dd><strong>{CREDITS}</strong></dd>
+			</dl>
+		<!-- ENDIF -->
+	</fieldset>
+<!-- ENDIF -->
+
+	<fieldset>
+		<p class="submit-buttons">
+			<input class="button1" id="submit" name="submit" type="submit" value="Update" />
+			<input class="button2" id="reset" name="reset" type="reset" value="Reset" />
+		</p>
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

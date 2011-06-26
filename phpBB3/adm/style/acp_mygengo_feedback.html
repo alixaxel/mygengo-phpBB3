@@ -1,0 +1,60 @@
+<h2>Feedback</h2><hr />
+
+<!-- IF STATUS == 'Reviewable' -->
+	<form accept-charset="UTF-8" action="index.php{SID}&i=mygengo" method="post">
+		<input name="job_id" type="hidden" value="{JOB_ID}" />
+		<fieldset>
+			<dl>
+				<dt><label>Rating:</label></dt>
+				<dd>
+					Bad
+					&nbsp;
+					<input name="job[rating]" type="radio" value="1" /> 1
+					<input name="job[rating]" type="radio" value="2" /> 2
+					<input name="job[rating]" type="radio" value="3" /> 3
+					<input name="job[rating]" type="radio" value="4" /> 4
+					<input name="job[rating]" type="radio" value="5" /> 5
+					&nbsp;
+					Good
+				</dd>
+			</dl>
+			<dl>
+				<dt><label for="job[for_translator]">Feedback for Translator:</label></dt>
+				<dd><textarea id="job[for_translator]" name="job[for_translator]" rows="2" style="width: 98%;"></textarea></dd>
+			</dl>
+			<dl>
+				<dt><label for="job[for_mygengo]">Feedback for myGengo:</label></dt>
+				<dd><textarea id="job[for_mygengo]" name="job[for_mygengo]" rows="2" style="width: 98%;"></textarea></dd>
+			</dl>
+			<dl>
+				<dt><label for="job[public]">Can myGengo use this translation publicly in its examples?</label></dt>
+				<dd><input id="job[public]" name="job[public]" type="checkbox" value="1" /> <label for="job[public]">Yes, you can use this translation as public example of myGengo service.</label></dd>
+			</dl>
+			<p class="submit-buttons">
+				<input class="button1" name="mode" style="text-transform: capitalize;" type="submit" value="approve" />
+				<input class="button2" name="mode" style="text-transform: capitalize;" type="submit" value="reject" />
+			</p>
+		</fieldset>
+	</form>
+<!-- ELSE -->
+	<!-- IF RATING != '' || FOR_TRANSLATOR != '' -->
+	<fieldset>
+		<!-- IF RATING != '' -->
+			<dl>
+				<dt><label>Rating:</label></dt>
+				<dd><strong>{RATING}</strong></dd>
+			</dl>
+		<!-- ENDIF -->
+		<!-- IF FOR_TRANSLATOR != '' -->
+			<dl>
+				<dt><label>Feedback for Translator:</label></dt>
+				<dd><strong>{FOR_TRANSLATOR}</strong></dd>
+			</dl>
+		<!-- ENDIF -->
+	</fieldset>
+	<!-- ELSE -->
+		<div class="errorbox notice">
+			<p>No feedback submitted yet.</p>
+		</div>
+	<!-- ENDIF -->
+<!-- ENDIF -->

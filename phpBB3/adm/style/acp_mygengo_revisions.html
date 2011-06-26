@@ -1,0 +1,46 @@
+<h2>Revisions</h2><hr />
+
+<table cellspacing="1">
+	<thead>
+		<tr>
+			<th>Revision</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!-- BEGIN revisions -->
+			<!-- IF revisions.S_ROW_COUNT is even -->
+				<tr class="row1">
+			<!-- ELSE -->
+				<tr class="row2">
+			<!-- ENDIF -->
+				<td>{revisions.BODY_TARGET}</td>
+				<td>{revisions.CTIME}</td>
+			</tr>
+		<!-- BEGINELSE -->
+			<tr>
+				<td bgcolor="white" colspan="2">
+					<div class="errorbox notice">
+						<p>No revisions for this job yet.</p>
+					</div>
+				</td>
+			</tr>
+		<!-- END jobs -->
+	</tbody>
+</table>
+
+<!-- IF STATUS == 'Reviewable' -->
+	<form accept-charset="UTF-8" action="index.php{SID}&i=mygengo&mode=revise" method="post">
+		<input name="job_id" type="hidden" value="{JOB_ID}" />
+		<fieldset>
+			<legend>Request Corrections</legend>
+			<div align="center">
+				<textarea id="job[comment]" name="job[comment]" rows="10" style="width: 98%;"></textarea>
+			</div>
+			<p class="submit-buttons">
+				<input class="button1" id="submit" name="submit" type="submit" value="Revise" />
+				<input class="button2" id="reset" name="reset" type="reset" value="Reset" />
+			</p>
+		</fieldset>
+	</form>
+<!-- ENDIF -->
